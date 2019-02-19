@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Style/Site.css" />
+    <link rel="stylesheet" href="~/lib/Bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="PageHeader">
+        <p>@Html.ActionLink("Домашняя страница", "Index", "Home")</p>
+    </div>
+    <div class="PabeBody">
+        @RenderBody()
+    </div>
+</body>
+</html>

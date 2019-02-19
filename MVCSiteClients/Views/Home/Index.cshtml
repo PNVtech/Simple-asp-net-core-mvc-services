@@ -1,0 +1,46 @@
+﻿
+@using MVCSiteClients.Models
+@model IEnumerable<ClientView>
+@{
+    ViewData["Title"] = "Клиенты";
+}
+
+<h3>@ViewData["HeaderPage"]</h3>
+<div class="row">
+    <div class="SearchClient col-3">
+        <p>Поиск клиента</p>
+        @using (Html.BeginForm("EditClient", "Home", FormMethod.Get))
+        {
+            <input type="text" , name="ClientID" />
+            <input type="submit" , value="Найти по ID" />
+        }
+    </div>
+
+    <div class="AddClient col-2">
+        @Html.ActionLink("Добавить клиента", "EditClient")
+    </div>
+
+    <div class="CityFilter col-2">
+        <p>Фильтр по городам</p>
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            @Html.DropDownList("CityID", ViewData["Cities"] as SelectList, "Город")
+            <input type="submit" , value="Фильтр по городу" />
+        }
+    </div>
+</div>
+<br />
+
+<table class="table table-bordered">
+    <tr><td>ID</td><td>Имя</td><td>Фамилия</td><td>Город</td></tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Surname</td>
+            <td>@item.City</td>
+            <td>@Html.ActionLink("Редактировать", "EditClient", new { ClientID = item.Id })</td>
+        </tr>
+    }
+</table>

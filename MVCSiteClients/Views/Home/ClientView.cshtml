@@ -1,0 +1,24 @@
+﻿@using MVCSiteClients.Models
+@model ClientView
+@{
+    ViewData["Title"] = "ClientView";
+}
+
+<h3>Клиент</h3>
+
+@using (Html.BeginForm("SaveClient", "Home", FormMethod.Post))
+{
+    <table class="table table-bordered">
+
+        @Html.HiddenFor(x => x.Id)
+
+        <tr><td>Имя</td><td>@Html.EditorFor(x => x.Name)</td></tr>
+
+        <tr><td>Фамилия</td><td>@Html.EditorFor(x => x.Surname)</td></tr>
+
+        <tr><td>Город</td><td> @Html.DropDownListFor(x => x.CityId, ViewData["Cities"] as SelectList, "Город")</td></tr>
+
+        <tr><td><input type="submit" value="Сохранить" /></td><td>@Html.ActionLink("Удалить", "DeleteClient", new { ClientID = Model.Id })</td></tr>
+
+    </table>
+}
